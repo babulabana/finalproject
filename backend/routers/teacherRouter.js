@@ -8,7 +8,9 @@ router.post("/",(req,res)=>{
 })
 router.get("/",async(req,res)=>{
     let teachers = await teacherController.getteacher()
-    res.send(teachers)
+    // res.send(teachers)
+    res.send({teachers:teachers})
+
 })
 router.get("/teacherbyname/:name",async(req,res)=>{
     let name = req.params.name

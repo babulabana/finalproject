@@ -12,7 +12,9 @@ router.post("/",(req,res)=>{
 })
 router.get("/",async(req,res)=>{
     let products = await productController.getproducts()
-    res.send(products)
+    // res.send(products)
+    res.send({products:products})
+
 })
 
 router.get("/companybyname/:company",async(req,res)=>{
