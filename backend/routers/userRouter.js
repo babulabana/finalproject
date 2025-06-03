@@ -9,7 +9,7 @@ router.post("/",(req,res)=>{
 router.get("/",async(req,res)=>{
     let users = await userController.getusers()
 
-    res.send({data:users})
+    res.send({users:users})
 })
 
 router.get("/userbyname/:name",async(req,res)=>{

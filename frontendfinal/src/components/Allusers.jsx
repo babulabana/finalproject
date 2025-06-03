@@ -1,23 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import { API_URL } from '../config/apidetails'
+import axios from "axios"
 export default function Allusers() {
     const [usersUI,setusersUI] = useState()
-
+    const [users,setusers] = useState([])
     useEffect(()=>{
-        fetch(API_URL+"user")
-        .then((d)=>d.json())
-        .then((d)=>{
-            console.log(d.data)
-            let users= d.data
+        // fetch(API_URL+"user")
+        // .then((d)=>d.json())
+        // .then((d)=>{
+        //     console.log(d.data)
+        //     let users= d.data
 
-            let ui =users.map((u)=>{
-                return <tr><td className='border-1 p-2'>{u.name}</td>
-                <td className='border-1 p-2'>{u.age}</td></tr>
+        //     let ui =users.map((u)=>{
+        //         return <tr><td className='border-1 p-2'>{u.name}</td>
+        //         <td className='border-1 p-2'>{u.age}</td></tr>
 
-            })
-            setusersUI(ui)
-        })
-        .catch((err)=>console.log(err))
+        //     })
+        //     setusersUI(ui)
+        // })
+        // .catch((err)=>console.log(err))
+
+       axios.get(API_URL + "user")
+       .then((d)=>
+      {
+        let uitemp = (d.data.users).map((u)=> 
+        <tr key={u._id}><td className='border-1 p-2'>{u.name}</td>
+          <td className='border-1 p-2'>{u.age}</td></tr>)
+        setusersUI(uitemp)
+      })
+       .catch((err)=>console.log(err))
     },[])
 
   return (
@@ -25,7 +36,10 @@ export default function Allusers() {
       <h1>Allusers</h1>
       <table>
         <thead>
-          <tr><th className='border-1 p-2'>name</th> <th className='border-1 p-2'>age</th></tr>
+          <tr>
+            <th className='border-1 p-2'>name</th>
+             <th className='border-1 p-2'>age</th>
+          </tr>
         </thead>
         <tbody>
           {usersUI}
