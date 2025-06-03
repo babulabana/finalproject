@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 app.get("/",(req,res)=>{
  
     // res.send("this is api home")
-    res.send({msg:"this is api home  use user for users "})
+    res.send({msg:"this is api home  use use      r for users "})
 })
 app.use("/user",userRouter)
 app.use("/teacher",teacherRouter)
