@@ -24,7 +24,7 @@ export default function Allusers() {
        .then((d)=>
       {
         let uitemp = (d.data.users).map((u)=> 
-        <tr key={u._id}><td className='border-1 p-2'>{u.name}</td>
+         <tr key={u._id}><td className='border-1 p-2'>{u.name}</td>
           <td className='border-1 p-2'>{u.age}</td></tr>)
         setusersUI(uitemp)
       })

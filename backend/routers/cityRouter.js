@@ -4,7 +4,7 @@ const { populate } = require("../models/productModel")
 const router = express.Router()
 router.post("/",(req,res)=>{
     let c ={
-          name:req.body.name,
+  name:req.body.name,
   state:req.body.state ,
   country: req.body.country,
   population:req.body.population ,
@@ -17,7 +17,10 @@ router.post("/",(req,res)=>{
 
 router.get("/",async(req,res)=>{
     let city = await cityController.getcity()
-    res.send(city)
+    // res.send(city)
+    res.send({city:city})
+
+
 })
 router.get("/citybyname/:name",async(req,res)=>{
     let name =req.params.name
