@@ -12,7 +12,7 @@ router.post("/",(req,res)=>{
   official_language:req.body.official_language ,
   metro:req.body.metro    }
   cityController.addcity(c)
-  res.send("city add")
+  res.send({msg:"city add"})
 })
 
 router.get("/",async(req,res)=>{

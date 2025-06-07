@@ -4,7 +4,7 @@ const router =express.Router()
 router.post("/",(req,res)=>{
     let t = {name:req.body.name,age:req.body.age,department:req.body.department,salary:req.body.salary}
     teacherController.addteacher(t)
-    res.send("teacher added")
+    res.send({msg:"teacher added"})
 })
 router.get("/",async(req,res)=>{
     let teachers = await teacherController.getteacher()

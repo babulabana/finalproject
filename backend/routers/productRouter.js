@@ -8,7 +8,7 @@ router.post("/",(req,res)=>{
     category:req.body.category,
     company:req.body.company}
     productController.addproduct(p)
-    res.send("product add")
+    res.send({msg:"product add"})
 })
 router.get("/",async(req,res)=>{
     let products = await productController.getproducts()
