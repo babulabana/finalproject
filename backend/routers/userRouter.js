@@ -31,8 +31,8 @@ router.put("/",async(req,res)=>{
     let uname = req.body.name;
     let uage = req.body.age;
     let newuser = {name:uname,age:parseInt(uage)}
-    let msg = await  userController.updateuser(uid,newuser)
-    res.send(msg)
+    let obj = await  userController.updateuser(uid,newuser)
+    res.send({msg:obj.msg,users:obj.data})
 })
 
 module.exports= router
