@@ -1,14 +1,29 @@
 const teacherModel = require("../models/teacherModel")
-exports.addteacher = (teacher)=>{
+exports.addteacher = async(teacher)=>{
     let newteacher = new teacherModel({       
         name:teacher.name,
         age:teacher.age,
         department:teacher.department,
         salary:teacher.salary
     })
-  newteacher.save()
-  .then(()=>console.log("teacher save"))
-  .catch(()=>console.log("err"))
+    let data =[]
+    let msg = ""
+
+     await newteacher.save()
+     .then(async()=>{
+        msg = "record inserted"
+        await teacherModel.find()
+        .then((d)=>data= d)
+
+     })
+
+     .catch((err)=>msg =err)
+     return{data:data,msg:msg}
+
+
+//   newteacher.save()
+//   .then(()=>console.log("teacher save"))
+//   .catch(()=>console.log("err"))
 }
 exports.getteacher = async()=>{
     let teachers = [];

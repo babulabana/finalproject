@@ -154,7 +154,7 @@ export default function Adduser() {
       age: ageref.current.value,
     };
 
-    if (btnref.current.value === "Add") {
+    if (btnref.current.value == "Add") {
       axios.post(API_URL + "user", data)
         .then((res) => {
           alert(res.data.msg);

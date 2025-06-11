@@ -1,10 +1,12 @@
 const express = require("express")
 const teacherController = require("../controllers/teacherController")
 const router =express.Router()
-router.post("/",(req,res)=>{
-    let t = {name:req.body.name,age:req.body.age,department:req.body.department,salary:req.body.salary}
-    teacherController.addteacher(t)
-    res.send({msg:"teacher added"})
+router.post("/",async(req,res)=>{
+    let t = {name:req.body.name,age:parseInt(req.body.age),department:req.body.department,salary:parseInt(req.body.salary)}
+    // teacherController.addteacher(t)
+    // res.send({msg:"teacher added"})
+    let obj = await teacherController.addteacher(t)
+    res.send({msg:obj.msg,teachers:obj.data})
 })
 router.get("/",async(req,res)=>{
     let teachers = await teacherController.getteacher()
