@@ -4,12 +4,13 @@ const userRouter = require("./routers/userRouter")
 const teacherRouter = require("./routers/teacherRouter")
 const productRouter = require("./routers/productRouter")
 const cityRouter = require("./routers/cityRouter")
+const userRRouter = require("./routers/userRRouter")
 const app = express()
 const cors =require("cors")
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-
+app.use("/userr",userRRouter)
 app.get("/",(req,res)=>{
  
     // res.send("this is api home")

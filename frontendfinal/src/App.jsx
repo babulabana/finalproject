@@ -65,8 +65,9 @@ import Adduser from "./components/Adduser";
 import Addteacher from "./components/Addteacher";
 import Addproduct from "./components/Addproduct";
 import Addcity from "./components/Addcity";
-import Adminhome from "./admin/Adminhome";
-import AdminLogin from "./admin/Adminlogin";
+import Registration from "./components/users/Registation";
+// import Adminhome from "./admin/Adminhome";
+// import AdminLogin from "./admin/Adminlogin";
 
 function App() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -112,8 +113,9 @@ function App() {
                   
             <NavLink to="/allproduct" label="All Products" />
             <NavLink to="/allcity" label="All Cities" />
-             <NavLink to="/adminlogin" label="adminlogin" />
-              <NavLink to="/adminhome" label="adminhome" />
+            <NavLink to="/registation" label="registation" />
+             {/* <NavLink to="/adminlogin" label="adminlogin" />
+              <NavLink to="/adminhome" label="adminhome" /> */}
           </div>
         </div>
 
@@ -128,8 +130,10 @@ function App() {
             <NavLinkMobile to="/allcity" label="All Cities" onClick={() => setMenuOpen(false)} />
             <NavLinkMobile to="/addproduct" label="Add Product" onClick={() => setMenuOpen(false)} />
             <NavLinkMobile to="/addcity" label="Add City" onClick={() => setMenuOpen(false)} />
-            <NavLinkMobile to="/adminhome" label="admin home" onClick={() => setMenuOpen(false)} />
-            <NavLinkMobile to="/adminlogin" label="admin login" onClick={() => setMenuOpen(false)} />
+            <NavLinkMobile to="/registation" label="registation" onClick={() => setMenuOpen(false)} />
+
+            {/* <NavLinkMobile to="/adminhome" label="admin home" onClick={() => setMenuOpen(false)} />
+            <NavLinkMobile to="/adminlogin" label="admin login" onClick={() => setMenuOpen(false)} /> */}
 
           </div>
         )}
@@ -146,8 +150,9 @@ function App() {
           <Route path="/allcity" element={<Allcity />} />
           <Route path="/addproduct" element={<Addproduct />} />
           <Route path="/addcity" element={<Addcity />} />
-          <Route path="/adminhome" element={<Adminhome></Adminhome>}></Route>
-          <Route path="/adminlogin" element={<AdminLogin></AdminLogin>}></Route>
+          <Route path="/registation" element={<Registration></Registration>}/>
+          {/* <Route path="/adminhome" element={<Adminhome></Adminhome>}></Route>
+          <Route path="/adminlogin" element={<AdminLogin></AdminLogin>}></Route> */}
 
         </Routes>
       </main>
@@ -179,3 +184,5 @@ function NavLinkMobile({ to, label, onClick }) {
 }
 
 export default App;
+
+
