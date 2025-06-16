@@ -15,4 +15,4 @@ const userRSchema = new mongoose.Schema({
 })
 const UserR =mongoose.model("userr",userRSchema)
 module.exports= UserR
-console.log("model run")
+// console.log("model run")
