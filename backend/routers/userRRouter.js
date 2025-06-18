@@ -6,5 +6,11 @@ router.post("/",(req,res)=>{
  userRController.adduserr(u)
  res.send("register added")
 })
+router.post("/login",async (req,res)=>
+{
+    let d = await userRController.loginUser(req.body)
+    console.log(d)
+     res.send(d)
+})
 
 module.exports= router

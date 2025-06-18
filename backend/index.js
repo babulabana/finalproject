@@ -6,11 +6,16 @@ const productRouter = require("./routers/productRouter")
 const cityRouter = require("./routers/cityRouter")
 const userRRouter = require("./routers/userRRouter")
 const app = express()
+const multer = require('multer');
+const path = require('path');
+const blogrouter = require("./routers/BlogRouter")
 const cors =require("cors")
 app.use(cors())
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use("/userr",userRRouter)
+app.use("/blogs",blogrouter)
 app.get("/",(req,res)=>{
  
     // res.send("this is api home")

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { API_URL } from '../../config/apidetails';
 
 export default function Registration() {
@@ -55,108 +55,63 @@ export default function Registration() {
     return Object.keys(formErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validate()) {
-      alert("Registration Successful");
-      console.log(formData);
-      // reset form or submit to API here
+      try {
+        const data = {
+          fullname: formData.fullname,
+          email: formData.email,
+          contact: formData.contact,
+          password: formData.password,
+        };
+
+        await axios.post(API_URL + "userr", data);
+        alert("Registration Successful");
+
+        // Clear form state
+        setFormData({
+          fullname: '',
+          email: '',
+          contact: '',
+          password: '',
+          confirmPassword: ''
+        });
+        setErrors({});
+
+      } catch (error) {
+        console.error("Registration error", error);
+      }
     }
   };
 
-  const fullnameref = useRef();
-  const emailref = useRef();
-  const contactref = useRef();
-  const passwordref = useRef();
-  const add = ()=>{
-    const data ={
-      fullname:fullnameref.current.value,
-      email:emailref.current.value,
-      contact:contactref.current.value,
-      password:passwordref.current.value,
-    }
-    axios.post(API_URL +"userr",data)
-    .then((res)=>{
-     console.log("registered")
-    })
-    .catch(()=>console.log("err"))
-  }
-
   return (
+
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Registration</h2>
 
-        <div className="mb-4">
-          <label className="block mb-1">Fullname</label>
-          <input ref={fullnameref}
-            type="text"
-            name="fullname"
-            value={formData.fullname}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-          {errors.fullname && <p className="text-red-500 text-sm">{errors.fullname}</p>}
-        </div>
+        {[
+          { label: "Fullname", name: "fullname", type: "text" },
+          { label: "Email", name: "email", type: "email" },
+          { label: "Contact", name: "contact", type: "text", maxLength: 10 },
+          { label: "Password", name: "password", type: "password", maxLength: 20 },
+          { label: "Confirm Password", name: "confirmPassword", type: "password", maxLength: 20 },
+        ].map(({ label, name, type, maxLength }) => (
+          <div className="mb-4" key={name}>
+            <label className="block mb-1">{label}</label>
+            <input type={type} name={name} maxLength={maxLength} value={formData[name]}
+              onChange={handleChange} className="w-full p-2 border rounded"
+            />
+            {errors[name] && <p className="text-red-500 text-sm">{errors[name]}</p>}
+          </div>
+        ))}
 
-        <div className="mb-4">
-          <label className="block mb-1">Email</label>
-          <input ref={emailref}
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-          {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Contact</label>
-          <input ref={contactref}
-            type="text"
-            name="contact"
-            maxLength="10"
-            value={formData.contact}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-          {errors.contact && <p className="text-red-500 text-sm">{errors.contact}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Password</label>
-          <input ref={passwordref}
-            type="password"
-            name="password"
-            maxLength="20"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-          {errors.password && <p className="text-red-500 text-sm">{errors.password}</p>}
-        </div>
-
-        <div className="mb-4">
-          <label className="block mb-1">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            maxLength="20"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-full p-2 border rounded"
-          />
-          {errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword}</p>}
-        </div>
-
-        <button
-          type="submit" onClick={()=>add()}
-          className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition"
-        >
+        <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition">
           Register
         </button>
       </form>
     </div>
   );
 }
+
