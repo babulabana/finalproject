@@ -34,4 +34,9 @@ router.post("/",upload.single('image'),async (req,res)=>
     res.status(500).json({ error: 'Server error' });
   }
 })
+router.get("/",async(req,res)=>{
+    let blogs = await blogController.getublog()
+
+    res.send({blogs:blogs})
+})
 module.exports = router

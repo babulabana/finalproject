@@ -13,3 +13,13 @@ exports.addBlog=async (blog)=>
     .then(()=>msg = "blog created")
 return msg 
 }
+
+exports.getublog = async()=>{
+    let blog = [];
+    await BlogModel.find()
+    .then((d)=>{
+        console.log(d)
+        blog = d
+    })
+    return blog
+}
