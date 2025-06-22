@@ -15,11 +15,11 @@ return msg
 }
 
 exports.getublog = async()=>{
-    let blog = [];
+    let blogs = [];
     await BlogModel.find()
     .then((d)=>{
         console.log(d)
-        blog = d
+        blogs = d
     })
-    return blog
+    return blogs
 }
