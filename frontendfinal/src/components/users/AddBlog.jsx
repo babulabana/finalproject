@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useRef } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../config/apidetails';
 
@@ -8,6 +9,8 @@ export default function AddBlog() {
   const [category, setCategory] = useState('Computer Science');
   const [image, setImage] = useState(null);
   const [message, setMessage] = useState('');
+
+  const fileInputRef = useRef(); // <-- Ref for file input
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +34,7 @@ export default function AddBlog() {
         setContent('');
         setCategory('Computer Science');
         setImage(null);
+        fileInputRef.current.value = ''; // <-- Clear file input
       }
     } catch (err) {
       console.error(err);
@@ -39,17 +43,21 @@ export default function AddBlog() {
   };
 
   return (
-    <div style={{ maxWidth: '600px', margin: 'auto' }}>
-      <h2>Add New Blog</h2>
-      {message && <p>{message}</p>}
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
+    <div className="max-w-xl mx-auto p-6 bg-white rounded-2xl shadow-md mt-10">
+      <h2 className="text-2xl font-bold mb-6 text-center">Add New Blog</h2>
+      {message && (
+        <div className="mb-4 text-center text-sm font-medium text-green-600">
+          {message}
+        </div>
+      )}
+      <form onSubmit={handleSubmit} encType="multipart/form-data" className="space-y-4">
         <input
           type="text"
           placeholder="Blog Title"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           required
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <textarea
           placeholder="Blog Content"
@@ -57,12 +65,12 @@ export default function AddBlog() {
           onChange={(e) => setContent(e.target.value)}
           required
           rows={5}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-          style={{ width: '100%', padding: '8px', marginBottom: '10px' }}
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="Computer Science">Computer Science</option>
           <option value="Astrology">Astrology</option>
@@ -73,11 +81,17 @@ export default function AddBlog() {
         <input
           type="file"
           accept="image/*"
+          ref={fileInputRef}
           onChange={(e) => setImage(e.target.files[0])}
           required
-          style={{ marginBottom: '10px' }}
+          className="w-full"
         />
-        <button type="submit" style={{ padding: '10px 20px' }}>Add Blog</button>
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg transition duration-300 font-semibold"
+        >
+          Add Blog
+        </button>
       </form>
     </div>
   );

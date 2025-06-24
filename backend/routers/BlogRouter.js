@@ -35,8 +35,8 @@ router.post("/",upload.single('image'),async (req,res)=>
   }
 })
 router.get("/",async(req,res)=>{
-    let blogs = await blogController.getublog()
+    let data = await blogController.getblogs()
 
-    res.send({blogs:blogs})
+    res.send(data)
 })
 module.exports = router

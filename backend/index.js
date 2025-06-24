@@ -14,13 +14,16 @@ app.use(cors())
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use(express.json())
 app.use(express.urlencoded({extended:true}))
-app.use("/userr",userRRouter)
-app.use("/blogs",blogrouter)
+
+
 app.get("/",(req,res)=>{
  
     // res.send("this is api home")
     res.send({msg:"this is api home  use user for users "})
 })
+app.use("/userr",userRRouter)
+app.use("/blogs",blogrouter)
+
 app.use("/user",userRouter)
 app.use("/teacher",teacherRouter)
 app.use("/product",productRouter)

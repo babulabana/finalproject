@@ -14,12 +14,12 @@ exports.addBlog=async (blog)=>
 return msg 
 }
 
-exports.getublog = async()=>{
-    let blogs = [];
+exports.getblogs = async()=>{
+    let data = [];
     await BlogModel.find()
     .then((d)=>{
         console.log(d)
-        blogs = d
+        data = d
     })
-    return blogs
+    return data
 }

@@ -21,7 +21,9 @@ import Adminhome from './components/admin/Adminhome'
 import Userlogin from './components/users/Userlogin'
 import Adminlogin from './components/admin/Adminlogin'
 import Userhome from './components/users/Userhome'
-import ShowBlog from './components/users/ShowBlog'
+import Allblogs from './components/users/Allblogs'
+import Showdetails from './components/users/Showdetails'
+// import ShowBlog from './components/users/ShowBlog'
 function App() {
 let islogin = useSelector((s)=>(s.admin.islogin))
 let userislogin = useSelector((S)=>S.user.islogin)
@@ -37,7 +39,7 @@ let userislogin = useSelector((S)=>S.user.islogin)
       <Link to="/showusers">All users</Link>
       <Link to="/adduser">Add User</Link>
       <Link to="/adminHome">Admin</Link>
-      <Link to="/showblog">showblog</Link>
+      {/* <Link to="/showblog">showblog</Link> */}
       </div>
       {islogin? <AdminNavbar></AdminNavbar>:""}
       <Routes>
@@ -49,8 +51,10 @@ let userislogin = useSelector((S)=>S.user.islogin)
 
           <Route path = "/userlogin" element = {<Userlogin></Userlogin>}></Route>
           {/* <Route path='/addblog' element={<AddBlog></AddBlog>}></Route> */}
-        <Route path='/showblog' element={<ShowBlog></ShowBlog>}></Route>
+        <Route path='/blogs' element={<Allblogs></Allblogs>}></Route>
         <Route path='/adminLogin' element={<Adminlogin></Adminlogin>}></Route>
+        <Route path='/showdetails' element={<Showdetails></Showdetails>}></Route>
+
         {/* <Route path='/adduser' element={<Adduser></Adduser>}></Route>
         <Route path='/showusers' element={<Allusers></Allusers>}></Route> */}
       </Routes>
