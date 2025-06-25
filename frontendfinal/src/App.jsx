@@ -2,20 +2,11 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-// import Allusers from './components/Allusers'
-// import Adduser from './components/Adduser'
 import { Route ,Routes} from 'react-router'
 import { Link } from 'react-router'
-// import Adminhome from './components/admin/Adminhome'
-// import AdminLogin from './components/admin/AdminLogin'
 import { useSelector } from 'react-redux'
 import AddBlog from './components/users/Addblog'
-// import Userhome from './components/users/Userhome'
-// import AddBlog from './components/user/AddBlog'
 import AdminNavbar from './components/admin/AdminNavbar'
-// import UserRegistration from './components/user/UserRegistration'
-// import UserLogin from './components/user/userLogin'
-// import UserHome from './components/user/UserHome'
 import Registration from './components/users/Registation'
 import Adminhome from './components/admin/Adminhome'
 import Userlogin from './components/users/Userlogin'
@@ -23,40 +14,37 @@ import Adminlogin from './components/admin/Adminlogin'
 import Userhome from './components/users/Userhome'
 import Allblogs from './components/users/Allblogs'
 import Showdetails from './components/users/Showdetails'
-// import ShowBlog from './components/users/ShowBlog'
+import UserNavbar from './components/users/UserNavbar'
 function App() {
 let islogin = useSelector((s)=>(s.admin.islogin))
-let userislogin = useSelector((S)=>S.user.islogin)
+let isulogin = useSelector((S)=>S.user.islogin)
   return (
     <div>
-      {/* Current counter is : {data} */}
       <div className='flex gap-4 h-9 bg-orange-400'>
         
         
         
-        {userislogin?<Link to="/userHome">User home </Link>:<div><Link to="/userlogin">User login</Link><Link to="/registration">User Registration </Link></div>}
+        {isulogin?<Link to="/userhome">User home </Link>:<div><Link to="/userlogin">User login</Link><Link to="/registration">User Registration </Link></div>}
       
-      <Link to="/showusers">All users</Link>
-      <Link to="/adduser">Add User</Link>
-      <Link to="/adminHome">Admin</Link>
-      {/* <Link to="/showblog">showblog</Link> */}
+      {/* <Link to="/showusers">All users</Link>
+      <Link to="/adduser">Add User</Link> */}
+      <Link to="/adminhome">Admin</Link>
+      <Link to="/userhome">user</Link>
       </div>
       {islogin? <AdminNavbar></AdminNavbar>:""}
       <Routes>
         <Route path ="/addblog" element={<AddBlog></AddBlog>}></Route>
-        <Route path = "/userHome" element={<Userhome></Userhome>}></Route>
-        <Route path='/adminHome' element={<Adminhome></Adminhome>}> </Route>
-          {/* <Route path="/registration" element={}></Route> */}
+        <Route path = "/userhome" element={<Userhome></Userhome>}></Route>
+        <Route path='/adminhome' element={<Adminhome></Adminhome>}> </Route>
          <Route path='/registration' element={<Registration></Registration>}></Route>
+         <Route path='/' element={<Registration></Registration>}></Route>
+
 
           <Route path = "/userlogin" element = {<Userlogin></Userlogin>}></Route>
-          {/* <Route path='/addblog' element={<AddBlog></AddBlog>}></Route> */}
         <Route path='/blogs' element={<Allblogs></Allblogs>}></Route>
-        <Route path='/adminLogin' element={<Adminlogin></Adminlogin>}></Route>
+        <Route path='/adminlogin' element={<Adminlogin></Adminlogin>}></Route>
         <Route path='/showdetails' element={<Showdetails></Showdetails>}></Route>
-
-        {/* <Route path='/adduser' element={<Adduser></Adduser>}></Route>
-        <Route path='/showusers' element={<Allusers></Allusers>}></Route> */}
+         <Route path='/usernavabar' element={<UserNavbar></UserNavbar>}></Route>
       </Routes>
     
    </div>

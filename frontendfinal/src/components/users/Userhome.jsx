@@ -20,10 +20,15 @@ import Allbolgs from "./Allblogs"
 import Userlogin from "./Userlogin"
 
 export default function Userhome() {
-  let isalogin = useSelector((s)=>s.user.islogin)
+  let isulogin = useSelector((s)=>s.user.islogin)
   return (
-    <div>
-      {isalogin? <Allbolgs></Allbolgs>:<Userlogin></Userlogin>}
-    </div>
+    
+    <div  className="min-h-screen  bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 p-4">
+          <div>{isulogin? <div className='flex items-center justify-center'><div className="bg-white shadow-xl rounded-2xl p-10 w-full max-w-md text-center">
+                        <h1 className="text-4xl font-bold text-gray-800 mb-4">Welcome Admin 🎉</h1>
+                        <p className="text-gray-600 text-lg">You are successfully logged in.</p>
+                    </div></div> 
+                    :<Userlogin></Userlogin>}</div>
+        </div>
   )
 }

@@ -52,7 +52,7 @@ export default function Userlogin() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-xl shadow-md">
+    <div className="max-w-md mx-auto mt-10 bg-white p-6 rounded-xl shadow-md ">
       <h2 className="text-2xl font-semibold mb-6 text-center">User Login</h2>
 
       {serverMessage && (
