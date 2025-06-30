@@ -3,8 +3,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { API_URL } from '../../config/apidetails';
-
+import { useNavigate } from 'react-router';
+import { useDispatch } from 'react-redux';
+import { loginUser } from '../../slices/Userslice';
 export default function Userlogin() {
+  const navigate = useNavigate()
+  let dispatch= useDispatch()
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -44,6 +48,8 @@ export default function Userlogin() {
          await axios.post(`${API_URL}userr/login`, formData);
          
         setServerMessage(response.data.msg || 'Login successful');
+        dispatch(loginUser())
+        navigate("/usernavbar")
        
       } catch (error) {
         setServerMessage(error.response?.data?.msg || 'Login failed. Please try again.');
@@ -91,4 +97,4 @@ export default function Userlogin() {
       </form>
     </div>
   );
-}
+} 

@@ -123,7 +123,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom'; // Updated import
 import { API_URL } from '../../config/apidetails';
-
+//  import { Link } from 'react-router-dom';
 export default function Registration() {
   const [formData, setFormData] = useState({
     fullname: '',

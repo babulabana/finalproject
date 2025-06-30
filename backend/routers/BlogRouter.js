@@ -20,11 +20,11 @@ const upload = multer({ storage: storage });
 router.post("/",upload.single('image'),async (req,res)=>
 {
      try {
-    const { title, content, category } = req.body;
+    const { title, content, category,user_id } = req.body;
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : '';
 
     const blog = {"title": title,"content": content,
-         "category":category, "imageUrl":imageUrl };
+         "category":category, "imageUrl":imageUrl ,"user_id":user_id};
     // await blog.save();
     let msg = await  blogController.addBlog(blog)
 

@@ -15,6 +15,11 @@ export default function AdminNavbar() {
                 </div>
                 <ul className="flex items-center space-x-6">
                     <li>
+                        <Link to="/blogs" className="text-gray-700 font-medium hover:text-indigo-600 transition">
+                            All Blogs
+                        </Link>
+                    </li>
+                    <li>
                         <Link to="/addblog" className="text-gray-700 font-medium hover:text-indigo-600 transition">
                             Add Blog
                         </Link>

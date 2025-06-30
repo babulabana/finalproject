@@ -57,7 +57,7 @@ export default function Adminlogin() {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center p-4">
+        <div className="min-h-screen flex items-center justify-center p-4">
             <div className="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
                 <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Admin Login</h2>
                 <div className="mb-4">

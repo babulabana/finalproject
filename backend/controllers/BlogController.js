@@ -8,6 +8,7 @@ exports.addBlog=async (blog)=>
         content: blog.content,
         category: blog.category,
         imageUrl:blog.imageUrl,
+        user_id:blog.user_id,
                 })
     await newblog.save()
     .then(()=>msg = "blog created")
