@@ -62,8 +62,10 @@ export default function AddBlog() {
 
   // If not logged in as admin or user, redirect to homepage
   if (!isAdminLoggedIn && !isUserLoggedIn) {
+   
     navigate('/');
     return null;
+    
   }
 
   return (
